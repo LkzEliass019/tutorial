@@ -3,8 +3,19 @@
     <%- include("../partials/head") %>
 
 <body>
-    Bem-vindo a página de cadastro
     <%- include("../partials/menu") %>
+    <main>
+        Bem-vindo a página de cadastro
+    </center>
+      <form action="/cadastro" method="post" class="formItens">
+        seu nome:
+        <input type="text" name="username" id="username" placeholder="Digite seu nome para cadastro"><br>
+        Senha:
+        <input type="password" name="password" id="senha" placeholder="Digite sua senha para cadastro"><br>
+        <button type="submit">Cadastrar</button>
+      </form>
+      <center>
+    </main>
     <%- include("../partials/footer") %>
 </body>
 </html>
