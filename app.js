@@ -10,34 +10,34 @@ app.use('/static', express.static(__dirname + '/static'));
 app.set('view engine', 'ejs');
 
 app.get ("/", (req, res) => {
-    console.log("GET /");
+    console.log("GET /index");
     // res.send("Alô SESI Sumaré<br>Bem-vindos ao SENAI Sumaré.");
     //res.send("<img src='./static/image.jpg' width='30%'/>" );
-    res.render("./pages/index" );
+    //res.render("./pages/index" );
 })
 
 app.get ("/sobre", (req, res) => {
-    console.log("GET /sobre");
-   res.render("./pages/sobre");
+    console.log("pages/sobre");
+   //res.render("./pages/sobre");
 })
 
 app.get ("/cadastro", (req, res) => {
-    console.log("GET /cadastro");
-    res.render("./pages/cadastro");
+    console.log("pages/cadastro");
+    //res.render("./pages/cadastro");
 })
 
 app.get ("/login", (req, res) => {
-    console.log("GET /login");
-    res.render("./pages/login");
+    console.log("pages/login");
+    //res.render("./pages/login");
 
 })
 
 app.get ("/dashboard", (req, res) => {
-    console.log("GET /dashboard");
-    res.render("./pages/dashboard");
+    console.log("pages/dashboard");
+    //res.render("./pages/dashboard");
 })
 
 app.listen(PORT, () =>{
     console.log(`Servidor sendo executado na porta ${PORT}`);
-    console.log(__dirname + "\\static");
+    //console.log(__dirname + "\\static");
 });
