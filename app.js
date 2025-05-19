@@ -33,7 +33,7 @@ app.get ("/", (req, res) => {
     console.log("GET /index");
     // res.send("Alô SESI Sumaré<br>Bem-vindos ao SENAI Sumaré.");
     //res.send("<img src='./static/image.jpg' width='30%'/>" );
-    res.render("./pages/index", {titulo: "index"});
+    res.render("./pages/index", {titulo: "index", req: req});
 })
 
 app.get ("/logout", (req, res) => {
@@ -46,12 +46,12 @@ req.session.destroy(() => {
 
 app.get ("/sobre", (req, res) => {
     console.log("GET /sobre");
-   res.render("./pages/sobre" , {titulo: "sobre"});
+   res.render("./pages/sobre" , {titulo: "sobre", req: req});
 })
 
 app.get ("/cadastro", (req, res) => {
     console.log("GET /cadastro");
-    res.render("./pages/cadastro" ,  {titulo: "cadastro"});
+    res.render("./pages/cadastro" ,  {titulo: "cadastro", req: req});
 })
 
 app.post("/cadastro", (req, res) =>{
@@ -120,7 +120,7 @@ app.post ("/login", (req, res) => {
 
 app.get("/login", (req, res) =>{
     console.log("GET /login")
-    res.render("./pages/login", {titulo: "login"});
+    res.render("./pages/login", {titulo: "login", req: req});
 });
 
 app.post("/login", (req, res) =>{
@@ -158,7 +158,7 @@ app.get("/dashboard", (req, res) => {
     db.all(query, [], (err, row) => {
         if (err) throw err;
         console.log(JSON.stringify(row));
-        res.render("pages/dashboard", { titulo: "Tabela de usuários", dados: row });
+        res.render("pages/dashboard", { titulo: "Tabela de usuários", dados: row, req: req});
     });
 }else {
     res.send("Usuário não logado")
