@@ -5,13 +5,24 @@
 
 <body>
   <%- include("../partials/menu") %>
-Página de Login <br><br><br>
+   <center><h1>Faça seu login</h1></center>
   <main>
     <form action="/login" method="post" class="formItens">
-      seu nome:
-      <input type="text" name="username" id="username" placeholder="Digite seu nome de usuário"><br>
-      Senha:
-      <input type="password" name="password" id="senha" placeholder="Digite sua senha"><br>
+       <table style="text-align: center;">
+        <tr>
+          <td>Seu Nome:  </td>
+          <td><input type="text" name="username" id="username" placeholder="Digite seu nome de usuário">  </td>
+        </tr>
+        <tr>
+          <td>
+            Senha
+          </td>
+          <td>
+            <input type="password" name="password" id="senha" placeholder="Digite sua senha">
+          </td>
+        </tr>
+       </table>
+      <br>
       <button type="submit">Entrar</button>
     </form>
   </main>

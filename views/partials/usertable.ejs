@@ -3,18 +3,23 @@
 <thead>
 </tr>
 <tbody>
-    <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Senha</th>
+    <tr style="border: 1px solid;">
+        <th style="border: 2px solid;">ID</th>
+        <th style="border: 2px solid;">Username</th>
+        <th style="border: 2px solid;">Senha</th>
     </tr> 
 </thead>
 </tbody>
 <% let i; for(i=0; i<dados.length; i++) { %>
-    <tr>
-        <td><%= dados[i].id %></td>
-        <td><%= dados[i].username %></td>
-        <td><%= dados[i].password %></td>
+     <% if (dados [i].username==req.session.username) {%>
+                        <tr style="background-color: rgb(255, 0, 0); color: white; border: solid 1px;">
+                            <%} else {%>
+                        <tr style="border: 1px solid;">
+                            <% }%>
+  
+        <td style="border: 1px solid;"><%= dados[i].id %></td>
+        <td style="border: 1px solid;"><%= dados[i].username %></td>
+        <td style="border: 1px solid;"><%= dados[i].password %></td>
     </tr>
     <% } %>
 </tbody>

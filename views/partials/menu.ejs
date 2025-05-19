@@ -6,16 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-</a><br><br><a href="/">Home</a><br><br>
-<a href="/sobre">Página sobre</a><br><br>
+    <header>
+    <nav>
+        <ul>
+<li><a href="/">Home</a></li>
+<li><a href="/sobre">Página sobre</a></li>
 
-<% if(!req.session.loggedein) { %>
-<a href="/cadastro">Página cadastro</a><br><br>
-<a href="/login">Página login</a><br><br>
+<% if(!req.session.loggedin) { %>
+<li><a href="/cadastro">Página cadastro</a></li>
+<li><a href="/login">Página login</a></li>
 <%} else { %>
-<a href="/dashboard">Página dashboard</a><br><br>
-<a href="/Logout">Logout</a><br><br>
+<li><a href="/dashboard">Página dashboard</a></li>
+<li><a href="/logout">Logout</a></li>
 <% } %>
+        </ul>
+</nav>
+    </header>
 </body>
 </html>
-<%- include("footer") %>

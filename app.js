@@ -39,7 +39,7 @@ app.get ("/", (req, res) => {
 app.get ("/logout", (req, res) => {
 console.log("GET /logout");
 req.session.destroy(() => {
-    res.redirect("/");
+res.redirect("/");
 
 }); 
 })
@@ -47,12 +47,27 @@ req.session.destroy(() => {
 app.get ("/sobre", (req, res) => {
     console.log("GET /sobre");
    res.render("./pages/sobre" , {titulo: "sobre", req: req});
-})
+});
 
 app.get ("/cadastro", (req, res) => {
     console.log("GET /cadastro");
     res.render("./pages/cadastro" ,  {titulo: "cadastro", req: req});
-})
+});
+app.get ("/usuario-cadastrado", (req, res) => {
+    console.log("GET /usuario-cadastrado");
+    res.render("./pages/usuario-cadastrado" ,  {titulo: "usuario-cadastrado", req: req});
+});
+app.get ("/usuario-invalido", (req, res) => {
+    console.log("GET /usuario-invalido");
+    res.render("./pages/usuario-invalido" ,  {titulo: "usuario-invalido", req: req});
+});
+// app.get ("/sucesso", (req, res) => {
+//     console.log("GET /sucesso");
+//     res.render("./pages/sucesso",  {titulo: "usuário cadastrado com sucesso!", req: req});
+// })
+app.get("/sucesso", (req, res) =>{
+    res.render("./pages/sucesso" ,  {titulo: "sucesso", req: req})
+});
 
 app.post("/cadastro", (req, res) =>{
     console.log("POST /cadastro")
@@ -69,7 +84,7 @@ app.post("/cadastro", (req, res) =>{
         if(row) {
             //2. Se o usuário existir e a senha é válida no BD, executar processo de login
            console.log(`Usuário: ${username} já cadastrado.`);
-           res.send("Usuário já Cadastrado");
+           res.redirect("/usuario-cadastrado");
         } else {
             //3. Se não, executar processo de negação de login
             const insert = "INSERT INTO users (username, password) VALUES (?,?)"
@@ -77,7 +92,7 @@ app.post("/cadastro", (req, res) =>{
                 if(err) throw err;
 
                 console.log(`Usuário: ${username} cadastrado com sucesso.`);
-                res.redirect("/login");
+                res.redirect("/sucesso");
             })
         }
 
@@ -109,7 +124,7 @@ app.post ("/login", (req, res) => {
         res.redirect("/dashboard")  
         } else {
         //3. Se não, executar processo de negação de login 
-            res.send("usuário inválido")
+            res.redirect("/usuario-invalido");
         }
        
     })
@@ -158,13 +173,24 @@ app.get("/dashboard", (req, res) => {
     db.all(query, [], (err, row) => {
         if (err) throw err;
         console.log(JSON.stringify(row));
-        res.render("pages/dashboard", { titulo: "Tabela de usuários", dados: row, req: req});
+        res.render("./pages/dashboard", { titulo: "Tabela de usuários", dados: row, req: req});
     });
 }else {
-    res.send("Usuário não logado")
-
+    res.redirect("/acesso_negado");
 }
-});
+    }); 
+
+     
+app.get("/acesso_negado", (req, res) => {
+    res.render("./pages/acesso_negado", { titulo: "acesso_negado!", req: req });
+    console.log("GET /acesso_negado");
+})
+
+app.use('/{*erro}', (req, res) => {
+
+    res.render('pages/404', {titulo: "ERRO 404", req: req});
+   
+})
 
 app.listen(PORT, () => {
     console.log(`Servidor sendo executado na porta ${PORT}`);
